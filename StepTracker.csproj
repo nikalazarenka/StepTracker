@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,8 +66,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Person.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Services\IOFileService.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -87,10 +91,41 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="TestData\day1.json" />
+    <None Include="TestData\day10.json" />
+    <None Include="TestData\day11.json" />
+    <None Include="TestData\day12.json" />
+    <None Include="TestData\day13.json" />
+    <None Include="TestData\day14.json" />
+    <None Include="TestData\day15.json" />
+    <None Include="TestData\day16.json" />
+    <None Include="TestData\day17.json" />
+    <None Include="TestData\day18.json" />
+    <None Include="TestData\day19.json" />
+    <None Include="TestData\day2.json" />
+    <None Include="TestData\day20.json" />
+    <None Include="TestData\day21.json" />
+    <None Include="TestData\day22.json" />
+    <None Include="TestData\day23.json" />
+    <None Include="TestData\day24.json" />
+    <None Include="TestData\day25.json" />
+    <None Include="TestData\day26.json" />
+    <None Include="TestData\day27.json" />
+    <None Include="TestData\day28.json" />
+    <None Include="TestData\day29.json" />
+    <None Include="TestData\day3.json" />
+    <None Include="TestData\day30.json" />
+    <None Include="TestData\day4.json" />
+    <None Include="TestData\day5.json" />
+    <None Include="TestData\day6.json" />
+    <None Include="TestData\day7.json" />
+    <None Include="TestData\day8.json" />
+    <None Include="TestData\day9.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StepTracker.Model;
 
 namespace StepTracker
 {
@@ -23,6 +24,12 @@ namespace StepTracker
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgMain.ItemsSource = Person.GetPersons();
         }
     }
 }

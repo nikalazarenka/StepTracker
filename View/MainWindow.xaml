@@ -11,7 +11,12 @@
             <ColumnDefinition Width="500"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+        <DataGrid x:Name="dgMain" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding User}" Width="100" />
+                <DataGridTextColumn Header="Шаги" Width="100" Binding="{Binding Steps}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
