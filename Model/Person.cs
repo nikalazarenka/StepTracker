@@ -37,9 +37,8 @@ namespace StepTracker.Model
                 {
                     MessageBox.Show(e.Message);
                 }
-                
-            }
 
+            }
             return _allPersonsList;
         }
     }

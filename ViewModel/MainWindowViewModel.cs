@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using GalaSoft.MvvmLight;
@@ -11,22 +12,40 @@ using StepTracker.Services;
 
 namespace StepTracker.ViewModel
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
         private static readonly string _path = $"{Environment.CurrentDirectory}\\TestData";
         private Data _selectedDataItem;
         private IOFileService _ioFileService;
 
         public SeriesCollection SeriesCollection { get; set; }
-
+        
         public List<Data> Data { get; }
+
+        public Data SelectedDataItem
+        {
+            get => _selectedDataItem;
+            set
+            {
+                _selectedDataItem = value;
+
+                SeriesCollection = new SeriesCollection
+                {
+                    new LineSeries {Values = _selectedDataItem.Steps.AsChartValues()}
+                };
+                OnPropertyChanged("SeriesCollection");
+            }
+        }
 
         public MainWindowViewModel()
         {
             var allPersons = Person.GetPersons();
 
-            var groupRecords = (from record in allPersons
-                group record by record.User into g
+            var groupPersons = (from person in allPersons
+                group person by person.User into g
                 let average = g.Average(u => u.Steps)
                 let best = g.Max(u => u.Steps)
                 let worst = g.Min(u => u.Steps)
@@ -44,21 +63,15 @@ namespace StepTracker.ViewModel
                     Status = (
                         from r in allPersons where r.User == g.Key select r.Status).ToList().First()
                 }).ToList();
-            Data = groupRecords;
+
+            Data = groupPersons;
         }
 
-        public Data SelectedDataItem
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            get => _selectedDataItem;
-            set
-            {
-                _selectedDataItem = value;
-
-                SeriesCollection = new SeriesCollection
-                {
-                    new LineSeries {Values = _selectedDataItem.Steps.AsChartValues()}
-                };
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }
