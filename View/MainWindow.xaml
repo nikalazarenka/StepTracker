@@ -18,16 +18,24 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Список пользователей" 
+        <Menu Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Экспортировать как" FontSize="14" FontFamily="Miriam" Margin="3">
+                <MenuItem Header="JSON"></MenuItem>
+                <MenuItem Header="XML"></MenuItem>
+                <MenuItem Header="CSV"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Список пользователей" 
                    TextAlignment="Center" 
                    Margin="0 3"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="График по выбранному пользователю" 
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="График по выбранному пользователю" 
                    TextAlignment="Center"
                    Margin="0 3"/>
-        <DataGrid ItemsSource="{Binding Data}" Grid.Row="1" 
+        <DataGrid ItemsSource="{Binding Data}" Grid.Row="2" 
                   Grid.Column="0" x:Name="dgMain" 
                   AutoGenerateColumns="False" IsReadOnly="True"
                   SelectedItem="{Binding SelectedDataItem}">
@@ -43,7 +51,7 @@
                                     Binding="{Binding WorstResult}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <wpf:CartesianChart Series="{Binding SeriesCollection}" Grid.Column="1"  Grid.Row="1" Margin="10">
+        <wpf:CartesianChart Series="{Binding SeriesCollection}" Grid.Column="1"  Grid.Row="2" Margin="10">
             <wpf:CartesianChart.AxisY >
                 <wpf:Axis Title="Шаги" MinValue="0" FontFamily="Miriam" FontSize="16"/>
             </wpf:CartesianChart.AxisY>
