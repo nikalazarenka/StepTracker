@@ -24,9 +24,9 @@
         </Grid.RowDefinitions>
         <Menu Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top">
             <MenuItem Header="Экспортировать как" FontSize="14" FontFamily="Miriam" Margin="3">
-                <MenuItem Header="JSON"></MenuItem>
-                <MenuItem Header="XML"></MenuItem>
-                <MenuItem Header="CSV"></MenuItem>
+                <MenuItem Header="JSON" Command="{Binding ExportJsonCommand}"/>
+                <MenuItem Header="XML" Command="{Binding ExportXmlCommand}"/>
+                <MenuItem Header="CSV" Command="{Binding ExportCsvCommand}"/>
             </MenuItem>
         </Menu>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Список пользователей" 
@@ -39,6 +39,11 @@
                   Grid.Column="0" x:Name="dgMain" 
                   AutoGenerateColumns="False" IsReadOnly="True"
                   SelectedItem="{Binding SelectedDataItem}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding Color}"></Setter>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" 
                                     Binding="{Binding UserName}"

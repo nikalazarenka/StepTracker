@@ -16,5 +16,22 @@ namespace StepTracker.Model
 
         public List<int> Steps { get; set; }
 
+        public string Color
+        {
+            get
+            {
+                if ((BestResult - AverageNumberOfSteps) > AverageNumberOfSteps * 0.2)
+                {
+                    return "LightGreen";
+                }
+                if((AverageNumberOfSteps-WorstResult)>AverageNumberOfSteps*0.2)
+                {
+                    //return "IndianRed";
+                    return "LightPink";
+                }
+                return "White";
+            }
+        }
+
     }
 }
